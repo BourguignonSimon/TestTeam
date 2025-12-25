@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/event_envelope.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_type",
+    "project_id",
+    "backlog_item_id",
+    "correlation_id",
+    "causation_id",
+    "payload",
+    "timestamp"
+  ],
+  "properties": {
+    "event_type": {"type": "string"},
+    "project_id": {"type": "string", "minLength": 1},
+    "backlog_item_id": {"type": "string", "minLength": 1},
+    "correlation_id": {"type": "string", "minLength": 1},
+    "causation_id": {"type": "string", "minLength": 1},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "payload": {"type": "object"}
+  }
+}

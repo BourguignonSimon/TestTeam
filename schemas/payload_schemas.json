@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/payload_schemas.json",
+  "type": "object",
+  "properties": {
+    "initial_request": {
+      "type": "object",
+      "required": ["summary", "requested_by"],
+      "properties": {
+        "summary": {"type": "string", "minLength": 1},
+        "requested_by": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "backlog_item_created": {
+      "type": "object",
+      "required": ["backlog_item_id", "priority"],
+      "properties": {
+        "backlog_item_id": {"type": "string", "minLength": 1},
+        "priority": {"type": "string", "enum": ["high", "medium", "low"]}
+      },
+      "additionalProperties": false
+    },
+    "clarification_needed": {
+      "type": "object",
+      "required": ["question", "assignee"],
+      "properties": {
+        "question": {"type": "string", "minLength": 3},
+        "assignee": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "user_response": {
+      "type": "object",
+      "required": ["answer", "question"],
+      "properties": {
+        "answer": {"type": "string", "minLength": 1},
+        "question": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "ready_for_dev": {
+      "type": "object",
+      "required": ["backlog_item_id"],
+      "properties": {
+        "backlog_item_id": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "dev_deliverable": {
+      "type": "object",
+      "required": ["description", "artifact"],
+      "properties": {
+        "description": {"type": "string", "minLength": 1},
+        "artifact": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "qa_report": {
+      "type": "object",
+      "required": ["status", "notes"],
+      "properties": {
+        "status": {"type": "string", "enum": ["pass", "fail"]},
+        "notes": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "work_completed": {
+      "type": "object",
+      "required": ["backlog_item_id", "status"],
+      "properties": {
+        "backlog_item_id": {"type": "string", "minLength": 1},
+        "status": {"type": "string", "enum": ["done"]}
+      },
+      "additionalProperties": false
+    },
+    "snapshot": {
+      "type": "object",
+      "required": ["state"],
+      "properties": {
+        "state": {"type": "object"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
